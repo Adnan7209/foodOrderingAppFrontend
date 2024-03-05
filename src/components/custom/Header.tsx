@@ -1,5 +1,5 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
+import MobileNav from "./MobileNav";
 
 const Header = () => {
   return (
@@ -11,6 +11,9 @@ const Header = () => {
         >
           KhaoPiyo.com
         </NavLink>
+        <div className="md:hidden">
+          <MobileNav/>
+        </div>
       </div>
     </div>
   );
