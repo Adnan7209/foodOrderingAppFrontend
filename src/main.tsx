@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <QueryClientProvider client={new QueryClient()}>
+      <QueryClientProvider client={queryClient}>
         <Auth0ProviderWithNavigate>
           <App />
           <Toaster visibleToasts={1} position="top-right" richColors />
