@@ -5,15 +5,17 @@ import { ReactNode } from "react";
 
 type PropsType = {
   children: ReactNode;
+  showHero?: boolean;
 };
 
-const Layout1 = ({ children }: PropsType) => {
+const Layout1 = ({ children, showHero = false }: PropsType) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <Hero/>
+      {showHero && <Hero />}
+
       <div className="container mx-auto flex-1 py-10">{children}</div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
