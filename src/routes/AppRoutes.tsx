@@ -3,6 +3,7 @@ import Layout1 from "@/layouts/Layout1";
 import AuthCallbackPage from "@/pages/AuthCallbackPage";
 import HomePage from "@/pages/HomePage";
 import ManageRestaurantPage from "@/pages/ManageRestaurantPage";
+import SearchPage from "@/pages/SearchPage";
 import UserProfilePage from "@/pages/UserProfilePage";
 import { Navigate, Route, Routes } from "react-router-dom";
 
@@ -18,6 +19,14 @@ const AppRoutes = () => {
         }
       />
       <Route path="/auth-callback" element={<AuthCallbackPage />} />
+      <Route
+        path="/search/:city"
+        element={
+          <Layout1 showHero={false}>
+            <SearchPage />
+          </Layout1>
+        }
+      />
       <Route element={<ProtectedRoute />}>
         <Route
           path="/user-profile"
@@ -31,7 +40,7 @@ const AppRoutes = () => {
           path="/manage-restaurant"
           element={
             <Layout1>
-              <ManageRestaurantPage/>
+              <ManageRestaurantPage />
             </Layout1>
           }
         />
