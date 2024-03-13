@@ -14,6 +14,6 @@ export type RestaurantType = {
   estimatedDeliveryTime: number;
   cuisines: string[];
   menuItems: MenuItemType[];
-  imageurl: string;
+  imageUrl: string;
   lastUpdated: string;
 };
