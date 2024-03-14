@@ -17,7 +17,6 @@ const SearchResultInfo = ({ city, total }: PropsType) => {
           Change Loacation
         </NavLink>
       </span>
-      insert sort dropdown
     </div>
   );
 };
