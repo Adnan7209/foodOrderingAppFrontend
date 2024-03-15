@@ -1,9 +1,10 @@
 import { useGetRestaurant } from "@/api/RestaurantApi";
+import { CheckOutButton } from "@/components/custom/CheckOutButton";
 import MenuItem from "@/components/custom/MenuItem";
 import OrderSummary from "@/components/custom/OrderSummary";
 import RestaurantInfo from "@/components/custom/RestaurantInfo";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card } from "@/components/ui/card";
+import { Card, CardFooter } from "@/components/ui/card";
 import { CartItemType } from "@/types/CartItemTypes";
 import { MenuItemType } from "@/types/RestaurantTypes";
 import { useState } from "react";
@@ -13,7 +14,10 @@ const DetailPage = () => {
   const { restaurantId } = useParams();
   const { restaurant, isLoading } = useGetRestaurant(restaurantId);
 
-  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+  const [cartItems, setCartItems] = useState<CartItemType[]>(() => {
+    const storedCartItems = sessionStorage.getItem(`cartItem-${restaurantId}`);
+    return storedCartItems ? JSON.parse(storedCartItems) : [];
+  });
   const addToCart = (menuItem: MenuItemType) => {
     setCartItems((prevCartItems) => {
       const existingCartItem = prevCartItems.find(
@@ -39,6 +43,10 @@ const DetailPage = () => {
           },
         ];
       }
+      sessionStorage.setItem(
+        `cartItem-${restaurantId}`,
+        JSON.stringify(updatedCartItems)
+      );
       return updatedCartItems;
     });
   };
@@ -47,6 +55,10 @@ const DetailPage = () => {
     setCartItems((prevCartItems) => {
       const updatedCartItems = prevCartItems.filter(
         (item) => cartItem._id !== item._id
+      );
+      sessionStorage.setItem(
+        `cartItem-${restaurantId}`,
+        JSON.stringify(updatedCartItems)
       );
       return updatedCartItems;
     });
@@ -81,6 +93,9 @@ const DetailPage = () => {
               cartItems={cartItems}
               removeFromCart={removeFromCart}
             />
+            <CardFooter>
+              <CheckOutButton />
+            </CardFooter>
           </Card>
         </div>
       </div>
