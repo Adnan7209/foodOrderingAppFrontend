@@ -1,6 +1,7 @@
 import ProtectedRoute from "@/auth/ProtectedRoute";
 import Layout1 from "@/layouts/Layout1";
 import AuthCallbackPage from "@/pages/AuthCallbackPage";
+import DetailPage from "@/pages/DetailPage";
 import HomePage from "@/pages/HomePage";
 import ManageRestaurantPage from "@/pages/ManageRestaurantPage";
 import SearchPage from "@/pages/SearchPage";
@@ -24,6 +25,14 @@ const AppRoutes = () => {
         element={
           <Layout1 showHero={false}>
             <SearchPage />
+          </Layout1>
+        }
+      />
+      <Route
+        path="/detail/:restaurantId"
+        element={
+          <Layout1 showHero={false}>
+            <DetailPage />
           </Layout1>
         }
       />

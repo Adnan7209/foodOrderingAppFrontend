@@ -1,5 +1,6 @@
 import { SearchState } from "@/pages/SearchPage";
 import { RestaurantSearchResponseType } from "@/types/RestaurantSearchResponseTypes";
+import { RestaurantType } from "@/types/RestaurantTypes";
 import { useQuery } from "react-query";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -14,7 +15,7 @@ export const useSearchRestaurants = (
       params.set("searchQuery", searchState.searchQuery);
       params.set("page", searchState.page.toString());
       params.set("selectedCuisines", searchState.selectedCuisines.join(","));
-      params.set("sortOption",searchState.sortOption);
+      params.set("sortOption", searchState.sortOption);
       const response = await fetch(
         `${API_BASE_URL}/api/restaurant/search/${city}?${params.toString()}`
       );
@@ -32,4 +33,25 @@ export const useSearchRestaurants = (
   );
 
   return { results, isLoading };
+};
+
+export const useGetRestaurant = (restaurantId?: string) => {
+  const getMyRestaurantByIdRequest = async (): Promise<RestaurantType> => {
+    const response = await fetch(
+      `${API_BASE_URL}/api/restaurant/${restaurantId}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to get restaurant");
+    }
+    return response.json();
+  };
+  const { data: restaurant, isLoading } = useQuery(
+    "fetchRestaurant",
+    getMyRestaurantByIdRequest,
+    {
+      enabled: !!restaurantId,
+    }
+  );
+  return { restaurant, isLoading };
 };

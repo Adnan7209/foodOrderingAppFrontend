@@ -10,7 +10,7 @@ type PropsType = {
 const SearchResultCard = ({ restaurant }: PropsType) => {
   return (
     <NavLink
-      to={`detail/${restaurant._id}`}
+      to={`/detail/${restaurant._id}`}
       className="grid lg:grid-cols-[2fr_3fr] gap-5"
     >
       <AspectRatio ratio={16 / 6}>
