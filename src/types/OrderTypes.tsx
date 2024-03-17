@@ -28,3 +28,8 @@ export type OrderType = {
   createdAt: string;
   restaurantId: string;
 };
+
+export type UpdateOrderStatusRequestType = {
+    orderId:string;
+    status:string;
+}

@@ -1,4 +1,4 @@
-import { OrderType } from "@/types/OrderTypes";
+import { OrderType, UpdateOrderStatusRequestType } from "@/types/OrderTypes";
 import { RestaurantType } from "@/types/RestaurantTypes";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "react-query";
@@ -135,3 +135,40 @@ export const useGetMyRestaurantOrders = () => {
 
   return { isLoading, orders };
 };
+
+
+export const useUpdateMyRestaurantOrder = () => {
+  const {getAccessTokenSilently} = useAuth0();
+  const updateMyRestaurantOrder = async(updateStatusOrderRequest:UpdateOrderStatusRequestType) => {
+    const accessToken = await getAccessTokenSilently();
+
+    const response = await fetch(
+      `${API_BASE_URL}/api/my/restaurant/order${updateStatusOrderRequest.orderId}/status`,{
+        method:"PATCH",
+        headers:{
+          Authorization:`Bearer ${accessToken}`,
+          "Content-Type":"application/json"
+
+        },
+        body:JSON.stringify({statu:updateStatusOrderRequest.status}),
+      }
+    );
+
+    if(!response.ok){
+      throw new Error("Failed to upload status")
+    }
+
+    return response.json();
+
+  }
+
+  const {mutateAsync:updateRestaurantStatus, isLoading, isError, isSuccess,reset} = useMutation(updateMyRestaurantOrder);
+  if(isSuccess){
+    toast.success("Order updated");
+  }
+  if(isError){
+    toast.error('Unable to update order');
+    reset();
+  }
+  return {updateRestaurantStatus,isLoading};
+}
