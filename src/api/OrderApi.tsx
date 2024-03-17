@@ -64,7 +64,7 @@ export const useCreateCheckoutSession = () => {
 export const useGetMyOrders = () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const getMyOrdersRequest = async (): Promise<OrderType> => {
+  const getMyOrdersRequest = async (): Promise<OrderType[]> => {
     const accessToken = await getAccessTokenSilently();
     const response = await fetch(`${API_BASE_URL}/api/order`, {
       headers: {

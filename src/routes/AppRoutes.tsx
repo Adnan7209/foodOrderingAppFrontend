@@ -4,6 +4,7 @@ import AuthCallbackPage from "@/pages/AuthCallbackPage";
 import DetailPage from "@/pages/DetailPage";
 import HomePage from "@/pages/HomePage";
 import ManageRestaurantPage from "@/pages/ManageRestaurantPage";
+import OrderStatusPage from "@/pages/OrderStatusPage";
 import SearchPage from "@/pages/SearchPage";
 import UserProfilePage from "@/pages/UserProfilePage";
 import { Navigate, Route, Routes } from "react-router-dom";
@@ -50,6 +51,14 @@ const AppRoutes = () => {
           element={
             <Layout1>
               <ManageRestaurantPage />
+            </Layout1>
+          }
+        />
+        <Route
+          path="/order-status"
+          element={
+            <Layout1>
+              <OrderStatusPage />
             </Layout1>
           }
         />

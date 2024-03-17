@@ -7,6 +7,15 @@ const MobileNavLinks = () => {
   return (
     <>
       <NavLink
+        to="/manage-restaurant"
+        className="font-bold hover:text-orange-500"
+      >
+        Manage Restaurant
+      </NavLink>
+      <NavLink to="/order-status" className="font-bold hover:text-orange-500">
+        Order Status
+      </NavLink>
+      <NavLink
         to="/user-profile"
         className="flex bg-white items-center font-bold hover:text-orange-500"
       >
