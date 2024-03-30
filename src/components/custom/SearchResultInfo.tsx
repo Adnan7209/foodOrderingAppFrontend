@@ -14,7 +14,7 @@ const SearchResultInfo = ({ city, total }: PropsType) => {
           to="/"
           className="ml-1 text-sm font-semibold underline cursor-pointer text-blue-500"
         >
-          Change Loacation
+          Change Location
         </NavLink>
       </span>
     </div>

@@ -34,7 +34,7 @@ const CuisinesFilter = ({
         <div className="text-md font-semibold mb-2">Filter By Cuisines</div>
         <div
           onClick={handleCuisinesReset}
-          className="text-sm font-semibold mb-2 underline cursor-pointer textt-blue-500"
+          className="text-sm font-semibold mb-2 underline cursor-pointer text-blue-500"
         >
           Reset Filters
         </div>

@@ -68,7 +68,7 @@ const SearchPage = () => {
   };
 
   if (isLoading) {
-    <span>Loading...</span>;
+    return <span className=" animate-pulse text-5xl ">Loading...</span>;
   }
 
   if (!results?.data || !city) {
