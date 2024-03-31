@@ -18,7 +18,7 @@ const UsernameMenu = () => {
         {user?.email}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-      <DropdownMenuItem>
+        <DropdownMenuItem>
           <NavLink
             to="/manage-restaurant"
             className="font-bold hover:text-orange-500"
@@ -37,7 +37,9 @@ const UsernameMenu = () => {
         <Separator />
         <DropdownMenuItem>
           <Button
-            onClick={() => logout()}
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
             className="flex flex-1 font-bold bg-orange-500"
           >
             Log Out
